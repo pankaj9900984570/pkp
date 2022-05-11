@@ -1,0 +1,83 @@
+#!/bin/bash
+yum update -y
+yum install httpd php php-mysql -y
+cd /var/www/html
+echo "healthy" > healthy.html
+wget https://wordpress.org/wordpress-5.1.1.tar.gz
+tar -xzf wordpress-5.1.1.tar.gz
+cp -r wordpress/* /var/www/html/
+rm -rf wordpress
+rm -rf wordpress-5.1.1.tar.gz
+chmod -R 755 wp-content
+chown -R www-data:www-data /var/www/html
+wget https://s3.amazonaws.com/bucketforwordpresslab-donotdelete/htaccess.txt
+mv htaccess.txt .htaccess
+chkconfig httpd on
+service httpd start
+
+
+
+==========================bash script========================================
+
+
+
+
+ 1  apt update -y
+    2  sudo apt install apache2
+    3  systemctl status apache2
+    4  sudo apt install mysql-server
+    5  sudo apt install php libapache2-mod-php php-mysql
+    6  php -v
+    7  sudo apt update
+    8  sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+    9  cd /var/www/html
+   10  ls
+   11  cd ..
+   12  cd /home/ubuntu/
+   13  sudo systemctl restart apache2
+   14  cd /var/www/html
+   15  curl -O https://wordpress.org/latest.tar.gz
+   16  tar xzvf latest.tar.gz
+   17  cp /var/www/html/wordpress/
+   18  cd /var/www/html/wordpress/
+   19  ls
+   20  cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+   21  ls
+   22  mkdir /var/www/html/wordpress/wp-content/upgrade
+   23  sudo chown -R www-data:www-data /var/www/html/wordpress
+   24  ls -al
+   25  sudo find /var/www/html/wordpress/ -type d -exec chmod 750 {} \;
+   26  sudo find /var/www/html/wordpress/ -type f -exec chmod 640 {} \;
+   27  vim wp-config.php
+   28  systemctl restart apache2
+   29  curl localhost
+   30  ls
+   31  cd ..
+   32  ls
+   33  cd /etc/apache2/
+   34  ls
+   35  cd mods-available/
+   36  ls
+   37  vim dir.conf
+   38  cd ..
+   39  ls
+   40  cd sites-available/
+   41  ls
+   42  vim 000-default.conf
+   43  systemctl restart apache2
+   44  curl localhost
+   45  systemctl restart apache2
+   46  history
+
+
+
+=========================commands to do wordpress==================================
+
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04
+
+
+
+
+
